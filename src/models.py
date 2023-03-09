@@ -9,25 +9,62 @@ from eralchemy2 import render_er
 Base = declarative_base()
 
 class Person(Base):
-    __tablename__ = 'person'
+    __tablename__ = 'user'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    username = Column(String(250),nullable=False)
+    firstName = Column(String(250),nullable=False)
+    lastName = Column(String(250),nullable=False)
+    email = Column(String(250),nullable=False)
 
-class Address(Base):
-    __tablename__ = 'address'
+
+class UserFavorites(Base):
+    __tablename__ = 'user_favorites'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    street_name = Column(String(250))
-    street_number = Column(String(250))
-    post_code = Column(String(250), nullable=False)
-    person_id = Column(Integer, ForeignKey('person.id'))
-    person = relationship(Person)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    character_id = Column(Integer, ForeignKey('character.id'))
+
+
+class Character(Base):
+    __tablename__ = 'character'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250),nullable=False)
+    height = Column(String(250),nullable=False)
+    mass = Column(String(250),nullable=False)
+    hairColor = Column(String(250),nullable=False)
+    eyeColor = Column(String(250),nullable=False)
+    skinColor = Column(String(250),nullable=False)
+    gender = Column(String(250),nullable=False)
+    birthYear = Column(String(250),nullable=False)
+    homeworld = Column(String(250),nullable=False)
+    url = Column(String(250),nullable=False)
+    description = Column(String(250),nullable=False)
+
+class Vechicles(Base):
+    __tablename__ = 'vehicles'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250),nullable=False)
+    model = Column(String(250),nullable=False)
+    manufacturer = Column(String(250),nullable=False)
+    costInCredits = Column(String(250),nullable=False)
+    length = Column(String(250),nullable=False)
+    maxAtmospheringSpeed = Column(String(250),nullable=False)
+    crew = Column(String(250),nullable=False)
+    passengers = Column(String(250),nullable=False)
+    cargoCapacity = Column(String(250),nullable=False)
+    consumables = Column(String(250),nullable=False)
+    vehiclesClass = Column(String(250),nullable=False)
+    pilots = Column(String(250),nullable=False)
+    films = Column(String(250),nullable=False)
+    created = Column(String(250),nullable=False)
+    edited = Column(String(250),nullable=False)
+    url = Column(String(250),nullable=False)
 
     def to_dict(self):
         return {}
 
-## Draw from SQLAlchemy base
+## Draw from SQLAlchemy bases
 render_er(Base, 'diagram.png')
