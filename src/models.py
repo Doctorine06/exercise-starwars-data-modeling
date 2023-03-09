@@ -1,6 +1,6 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -57,11 +57,17 @@ class Vechicles(Base):
     cargoCapacity = Column(String(250),nullable=False)
     consumables = Column(String(250),nullable=False)
     vehiclesClass = Column(String(250),nullable=False)
-    pilots = Column(String(250),nullable=False)
-    films = Column(String(250),nullable=False)
-    created = Column(String(250),nullable=False)
-    edited = Column(String(250),nullable=False)
-    url = Column(String(250),nullable=False)
+
+class Films(Base):
+    __tablename__ ='films'
+    id = Column(Integer, primary_key=True)
+    films_id = Column(Integer, ForeignKey('films.id'))
+
+class Pilot(Base):   
+    __tablename__ ='pilot' 
+    id = Column(Integer,primary_key=True)
+    character_id = Column(Integer, ForeignKey('character.id'))
+
 
     def to_dict(self):
         return {}
