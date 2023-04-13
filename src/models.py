@@ -32,29 +32,26 @@ class Character(Base):
     __tablename__ = 'character'
     id = Column(Integer, primary_key=True)
     name = Column(String(250),nullable=False)
+    gender = Column(String(250),nullable=False)
     height = Column(String(250),nullable=False)
     mass = Column(String(250),nullable=False)
     hairColor = Column(String(250),nullable=False)
     eyeColor = Column(String(250),nullable=False)
     skinColor = Column(String(250),nullable=False)
-    gender = Column(String(250),nullable=False)
     birthYear = Column(String(250),nullable=False)
-    homeworld = Column(String(250),nullable=False)
-    url = Column(String(250),nullable=False)
+    homeworld = Column(String(250),ForeignKey('homeworld.id'), nullable=True)
+    
     description = Column(String(250),nullable=False)
 
 class Vechicles(Base):
     __tablename__ = 'vehicles'
     id = Column(Integer, primary_key=True)
     name = Column(String(250),nullable=False)
+    crew = Column(String(250), ForiegnKey (('character.id', 'pilot.id', 'films.id' nullable =False))
     model = Column(String(250),nullable=False)
-    manufacturer = Column(String(250),nullable=False)
-    costInCredits = Column(String(250),nullable=False)
-    length = Column(String(250),nullable=False)
-    maxAtmospheringSpeed = Column(String(250),nullable=False)
-    crew = Column(String(250),nullable=False)
-    passengers = Column(String(250),nullable=False)
     cargoCapacity = Column(String(250),nullable=False)
+    maxAtmospheringSpeed = Column(String(250),nullable=False)
+    passengers = Column(String(250),nullable=False)
     consumables = Column(String(250),nullable=False)
     vehiclesClass = Column(String(250),nullable=False)
 
@@ -66,7 +63,7 @@ class Films(Base):
 class Pilot(Base):   
     __tablename__ ='pilot' 
     id = Column(Integer,primary_key=True)
-    character_id = Column(Integer, ForeignKey('character.id'))
+    character_id = Column(Integer, ForeignKey('character.id', 'vechicles.id'))
 
 
     def to_dict(self):
