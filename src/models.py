@@ -47,8 +47,8 @@ class Vechicles(Base):
     __tablename__ = 'vehicles'
     id = Column(Integer, primary_key=True)
     name = Column(String(250),nullable=False)
-    crew = Column(String(250), ForiegnKey (('character.id', 'pilot.id', 'films.id' nullable =False))
-    model = Column(String(250),nullable=False)
+    crew = Column(String(250), ForeignKey ('character.id', 'pilot.id', 'films.id'),nullable =False)
+    model = Column(String(250 , nullable=False))
     cargoCapacity = Column(String(250),nullable=False)
     maxAtmospheringSpeed = Column(String(250),nullable=False)
     passengers = Column(String(250),nullable=False)
