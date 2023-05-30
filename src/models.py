@@ -60,6 +60,10 @@ class Films(Base):
     id = Column(Integer, primary_key=True)
     films_id = Column(Integer, ForeignKey('films.id'))
 
+        const https://github.com/Doctorine06/starwars-data-modeling-exercise.git
+
+
+
 class Pilot(Base):   
     __tablename__ ='pilot' 
     id = Column(Integer,primary_key=True)
