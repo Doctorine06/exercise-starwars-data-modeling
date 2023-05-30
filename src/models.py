@@ -70,4 +70,5 @@ class Pilot(Base):
         return {}
 
 ## Draw from SQLAlchemy bases
+#w3schools
 render_er(Base, 'diagram.png')
